@@ -8,9 +8,7 @@ import pino from 'pino';
 
 // Configuration
 const sessionName = "session";
-const config = {
-    SESSION_ID: process.env.SESSION_ID // Assuming SESSION_ID is stored in environment variables
-};
+const config = require("../config.cjs");
 
 // Logger setup
 const MAIN_LOGGER = pino({
