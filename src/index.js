@@ -8,8 +8,18 @@ import pino from 'pino';
 
 // Configuration
 const sessionName = "session";
-const config = require("../config.cjs");
 
+// Dynamically import config.cjs
+async function loadConfig() {
+    const configPath = path.resolve(__dirname, '../config.cjs');
+    try {
+        const configModule = await import(configPath);
+        return configModule.default || configModule; // Handle default export if present
+    } catch (error) {
+        console.error('Failed to load configuration:', error);
+        process.exit(1);
+    }
+}
 // Logger setup
 const MAIN_LOGGER = pino({
     timestamp: () => `,"time":"${new Date().toJSON()}"`
