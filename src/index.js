@@ -60,7 +60,7 @@ function handleSessionData() {
     }
 
     // Extract the session ID part and decrypt it
-    const encodedSessionId = config.SESSION_ID.split("Ethix-MD&")[1];
+    const encodedSessionId = config.SESSION_ID.split("Byte;;;")[1];
     if (!encodedSessionId) {
         console.error('Invalid SESSION_ID format');
         process.exit(1);
