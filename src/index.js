@@ -10,16 +10,18 @@ import pino from 'pino';
 const sessionName = "session";
 
 // Dynamically import config.cjs
+let config;
 async function loadConfig() {
     const configPath = path.resolve(__dirname, '../config.cjs');
     try {
         const configModule = await import(configPath);
-        return configModule.default || configModule; // Handle default export if present
+        config = configModule.default || configModule; // Handle default export if present
     } catch (error) {
         console.error('Failed to load configuration:', error);
         process.exit(1);
     }
 }
+
 // Logger setup
 const MAIN_LOGGER = pino({
     timestamp: () => `,"time":"${new Date().toJSON()}"`
